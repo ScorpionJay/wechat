@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="app/css/main.css" />
+<link rel="stylesheet" type="text/css" href="app/js/lib/bootstrap/css/bootstrap.css" />
+<title>login</title>
+</head>
+<body>
+<!-- 	<div th:text="${hello}">hello</div>
+	<h2 th:text="${world}">world</h2> -->
+
+	<div class="container">
+		<!-- login -->
+		<div th:if="${username eq null}" class="text-center">
+			<h1>Demo</h1>
+			<form name='f' th:action="@{/loginPost}" method='POST' style="margin-top: 30px;">
+				<div class="row" style="margin-top: 10px;">
+					<label class="col-xs-4">Username</label>
+					<input class="col-xs-6" type='text' name='username' placeholder="username" />
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<label class="col-xs-4">Password</label>
+					<input class="col-xs-6" type='password' name='password' placeholder="password"/>
+				</div>
+				<div class="row" style="margin-top: 10px;">
+					<input name="submit" type="submit" value="Login" class="btn btn-primary col-xs-9 col-xs-offset-1" />
+				</div>
+			</form>
+		</div>	
+		
+		<!-- main -->
+		<div th:if="${username ne null}">
+			<div th:text="${'wlecome ' + username}" >username</div> 
+			<a th:href="@{/logout}">Logout </a>
+			
+				
+	
+			<ul class="nav nav-pills">
+			  <li class="active"><a  href="#/home">Home</a></li>
+			  <li><a href="#/accout">Accout</a></li>
+			  <li><a href="#/login">Login</a></li>
+			</ul>
+			
+			<div class="">
+				<ng-view></ng-view>
+			</div>
+	
+		
+			
+		</div>
+	</div><!-- end of container -->
+	
+</body>
+<script src="app/js/lib/requirejs/require.js" data-main="./app/js/common/main.js"></script>
+
+</html>

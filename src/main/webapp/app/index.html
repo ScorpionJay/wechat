@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>index</title>
+<!-- <link rel="stylesheet" type="text/css" href="css/main.css"> -->
+<link rel="stylesheet" type="text/css" href="js/lib/bootstrap/css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+
+		<ul class="nav nav-pills">
+		  <li class="active"><a href="/#/home">Home</a></li>
+		  <li><a href="/#/accout">Accout</a></li>
+		  <li><a href="/#/login">Login</a></li>
+		</ul>
+		
+		<div class="">
+			<ng-view></ng-view>
+		</div>
+
+	</div>
+</body>
+<script src="js/lib/requirejs/require.js" data-main="js/common/main.js"></script>
+</html>

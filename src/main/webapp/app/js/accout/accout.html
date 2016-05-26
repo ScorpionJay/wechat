@@ -1,0 +1,15 @@
+accout template
+
+<div>
+	
+	<div>{{money | number}}</div>
+	<div>{{100.15145 | number:2}}</div>
+	<div>{{100.15545 | number:2}}</div>
+	<div>{{money | testFilter:'hack'}}</div>
+	<div>{{'hello' | nickFilter}}</div>
+
+	<ul ng-repeat='d in data'>
+		<li>{{d.name}}</li>
+	</ul>
+
+</div>
