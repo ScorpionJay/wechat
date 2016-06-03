@@ -15,11 +15,11 @@
 		<servlet-class>com.weixin.servlet.InitServlet</servlet-class>
 		<init-param>
 			<param-name>APPID</param-name>
-			<param-value>wx8dfda79a073efa18</param-value>
+			<param-value>appid</param-value>
 		</init-param>
 		<init-param>
 			<param-name>APPSECRET</param-name>
-			<param-value>43b865a6d62dfdec8681ccaf9f804533</param-value>
+			<param-value>appsercret</param-value>
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>

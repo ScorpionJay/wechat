@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.weixin.controller.HelloController;
 import com.weixin.util.CheckUtil;
@@ -29,6 +30,7 @@ public class WeixinServlet extends HttpServlet{
 	private static final long serialVersionUID = -2836724667530087285L;
 
 	private static final Logger log = LoggerFactory.getLogger(HelloController.class);
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

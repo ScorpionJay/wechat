@@ -33,7 +33,7 @@ public class ShareServlet extends HttpServlet {
 		// getRequestURI getRequestURL区别
 		String url = request.getRequestURL().toString();
 		
-		String accessToken = WeixinUtil.getAccessToken().getAccessToken();
+		String accessToken = TokenThread.accessToken.getAccessToken();
 		String jsapi = WeixinUtil.getJsapiToken(accessToken);
 		
 		Map<String, String> map = Sign.sign(jsapi, url);

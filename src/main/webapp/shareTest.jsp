@@ -14,10 +14,11 @@
 	// 获取由OAuthServlet中传入的参数
 	Map<String, String> map = (Map<String, String>) request.getAttribute("wxInfo");
 %>
-<%-- jsapi_ticket	<%=map.get("jsapi_ticket")%> <br>
+appid		<%=map.get("appId")%>
+jsapi_ticket	<%=map.get("jsapi_ticket")%> <br>
 nonce_str	<%=map.get("nonceStr")%><br>
 timestamp	<%=map.get("timestamp")%><br>
-signature	<%=map.get("signature")%><br> --%>
+signature	<%=map.get("signature")%><br> 
 
 微信自定义分享测试
 

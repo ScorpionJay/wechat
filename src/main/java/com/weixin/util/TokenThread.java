@@ -41,5 +41,32 @@ public class TokenThread implements Runnable{
                 log.error("{}", e);    
             }    
         }    
-    }    
+    }
+
+	public static String getAPPID() {
+		return APPID;
+	}
+
+	public static void setAPPID(String aPPID) {
+		APPID = aPPID;
+	}
+
+	public static String getAPPSECRET() {
+		return APPSECRET;
+	}
+
+	public static void setAPPSECRET(String aPPSECRET) {
+		APPSECRET = aPPSECRET;
+	}
+
+	public static AccessToken getAccessToken() {
+		return accessToken;
+	}
+
+	public static void setAccessToken(AccessToken accessToken) {
+		TokenThread.accessToken = accessToken;
+	}  
+    
+    
+    
 }

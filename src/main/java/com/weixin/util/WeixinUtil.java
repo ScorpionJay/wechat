@@ -13,6 +13,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Component;
 
 import com.weixin.menu.Button;
 import com.weixin.menu.ClickButton;
@@ -25,6 +26,7 @@ import com.weixin.vo.UserInfo;
 /**
  * @author Jay
  */
+@Component
 public class WeixinUtil {
 
 	private static final String GET_ACCESS_TOKEN_URL= "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
@@ -120,7 +122,17 @@ public class WeixinUtil {
 	}
 	
 	
-	
+	public static AccessToken getAccessToken(String appId, String appSecret){
+		AccessToken token = new AccessToken();
+		String url = GET_ACCESS_TOKEN_URL.replace("APPID", appId).replace("APPSECRET",appSecret);
+		JSONObject jsonObject = doGetStr(url);
+		System.out.println(jsonObject.toString());
+		if(jsonObject != null){
+			token.setAccessToken(jsonObject.getString("access_token"));
+			token.setExpiresIn(jsonObject.getInt("expires_in"));
+		}
+		return token;
+	}
 
 	
 	

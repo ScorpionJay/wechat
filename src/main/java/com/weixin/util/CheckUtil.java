@@ -2,17 +2,27 @@ package com.weixin.util;
 
 import java.util.Arrays;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import com.weixin.controller.WxController;
+
 /**
  * @author : Jay
  */
 public class CheckUtil {
 
-	public static final String token = "dxETBxjYX_7DeNwwyff9AEgajL2_Dt5JC2WHf6SJFD4MT1Igk3gzqjCTO_hz2NOfQVCGOjNx3JC0dpMW3cJ3iG9WbTuUfz7IJZSnc6SHSLG0oq2o6b7hTVxG0CLQwN_KSFGbABAJWX";
-
+	private static final Logger log = LoggerFactory.getLogger(CheckUtil.class);
+	
 	public static boolean checkSignature(String signature, String timestamp,String nonce) {
 		
 		//String token = TokenThread.accessToken.getAccessToken();
 		//System.out.println("------------token------------ " + token);
+		String token = TokenThread.accessToken.getAccessToken();
+		
+		log.info("hack....." + token);
+		
 		String[] arr = new String[] { token, timestamp, nonce };
 
 		// 排序
