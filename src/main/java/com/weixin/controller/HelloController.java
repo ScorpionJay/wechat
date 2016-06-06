@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weixin.vo.UserVo;
 
+/**
+ * 测试控制器
+ * @author jay
+ * @since  2016年6月3日
+ */
 @Controller
 public class HelloController {
 

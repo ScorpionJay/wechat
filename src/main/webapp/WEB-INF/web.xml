@@ -15,11 +15,11 @@
 		<servlet-class>com.weixin.servlet.InitServlet</servlet-class>
 		<init-param>
 			<param-name>APPID</param-name>
-			<param-value>appid</param-value>
+			<param-value>wx8dfda79a073efa18</param-value>
 		</init-param>
 		<init-param>
 			<param-name>APPSECRET</param-name>
-			<param-value>appsercret</param-value>
+			<param-value>43b865a6d62dfdec8681ccaf9f804533</param-value>
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
@@ -40,16 +40,6 @@
 	<servlet-mapping>
 		<servlet-name>OAuthServlet</servlet-name>
 		<url-pattern>/oauth.do</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
-		<servlet-name>ShareServlet</servlet-name>
-		<servlet-class>com.weixin.servlet.ShareServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ShareServlet</servlet-name>
-		<url-pattern>/share.do</url-pattern>
 	</servlet-mapping>
 
 	<!--dispatchServlet -->

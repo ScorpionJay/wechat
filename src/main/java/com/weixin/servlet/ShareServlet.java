@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.weixin.controller.HelloController;
+import com.weixin.util.Sign;
 import com.weixin.util.TokenThread;
 import com.weixin.util.WeixinUtil;
 

@@ -18,8 +18,9 @@ import com.weixin.util.TokenThread;
 import com.weixin.util.WeixinUtil;
 
 /**
-* @author Jay
-* @since  2016年6月3日
+ * 微信分享控制器
+*  @author jay
+*  @since  2016年6月3日
 */
 @Controller
 //@RequestMapping(value="share")
@@ -33,7 +34,6 @@ public class WxShareController {
 		
 		response.setCharacterEncoding("UTF-8");
 
-		String code = request.getParameter("code");
 		// getRequestURI getRequestURL区别
 		String url = request.getRequestURL().toString();
 		

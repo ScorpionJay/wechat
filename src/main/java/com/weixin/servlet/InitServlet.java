@@ -17,7 +17,7 @@ public class InitServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -6319898826127265611L;
 
-	private static final Logger log = LoggerFactory.getLogger(HelloController.class);
+	private static final Logger log = LoggerFactory.getLogger(InitServlet.class);
 	
 	public void init() throws ServletException {
 

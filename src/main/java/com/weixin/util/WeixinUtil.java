@@ -2,8 +2,6 @@ package com.weixin.util;
 
 import java.io.IOException;
 
-import net.sf.json.JSONObject;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -15,13 +13,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
-import com.weixin.menu.Button;
-import com.weixin.menu.ClickButton;
-import com.weixin.menu.Menu;
-import com.weixin.menu.ViewButton;
 import com.weixin.vo.AccessToken;
 import com.weixin.vo.Oauth2Token;
 import com.weixin.vo.UserInfo;
+
+import net.sf.json.JSONObject;
 
 /**
  * @author Jay
@@ -115,8 +111,14 @@ public class WeixinUtil {
 		JSONObject jsonObject = doGetStr(url);
 		System.out.println(jsonObject.toString());
 		if(jsonObject != null){
-			token.setAccessToken(jsonObject.getString("access_token"));
-			token.setExpiresIn(jsonObject.getInt("expires_in"));
+			try {
+				token.setAccessToken(jsonObject.getString("access_token"));
+				token.setExpiresIn(jsonObject.getInt("expires_in"));
+			} catch (Exception e) {
+				int errorCode = jsonObject.getInt("errcode");
+				String errorMsg = jsonObject.getString("errmsg");
+				System.out.println( errorCode + " | "+errorMsg);
+			}
 		}
 		return token;
 	}

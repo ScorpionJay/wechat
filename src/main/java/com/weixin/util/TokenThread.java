@@ -7,17 +7,18 @@ import com.weixin.controller.HelloController;
 import com.weixin.vo.AccessToken;
 
 /**
+ * 获取token的线程( 存储appid appsecret token，将来可以使用数据库存放，例如redis缓存起来 )
  * @author       Jay
- * 获取token的线程
+ * @since		 2016-6-6
  */
 public class TokenThread implements Runnable{
 	
-	//private static Logger log = Logger.getLogger(TokenThread.class); 
 	private static final Logger log = LoggerFactory.getLogger(HelloController.class);
 	
-    public static String APPID = "wx8dfda79a073efa18";    
-    public static String APPSECRET = "43b865a6d62dfdec8681ccaf9f804533";
-    public static AccessToken accessToken = null;    
+	// 不经常改的变量
+    public static String APPID;    
+    public static String APPSECRET;
+    public static AccessToken accessToken;    
     
     public void run() {    
         while (true) {    
@@ -41,32 +42,6 @@ public class TokenThread implements Runnable{
                 log.error("{}", e);    
             }    
         }    
-    }
-
-	public static String getAPPID() {
-		return APPID;
-	}
-
-	public static void setAPPID(String aPPID) {
-		APPID = aPPID;
-	}
-
-	public static String getAPPSECRET() {
-		return APPSECRET;
-	}
-
-	public static void setAPPSECRET(String aPPSECRET) {
-		APPSECRET = aPPSECRET;
-	}
-
-	public static AccessToken getAccessToken() {
-		return accessToken;
-	}
-
-	public static void setAccessToken(AccessToken accessToken) {
-		TokenThread.accessToken = accessToken;
-	}  
-    
-    
+    }    
     
 }

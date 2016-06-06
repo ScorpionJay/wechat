@@ -1,30 +1,22 @@
 package com.weixin.util;
 
-import java.util.UUID;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Formatter;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.io.UnsupportedEncodingException;  
-/**
- * JAVA, Node, Python 部分代码只实现了签名算法，需要开发者传入 jsapi_ticket 和 url ，
- * 其中 jsapi_ticket 需要通过 http://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=ACCESS_TOKEN
- * 接口获取，url 为调用页面的完整 url 。
- * 注意事项：
- * 1. jsapi_ticket 的有效期为 7200 秒，开发者必须全局缓存 jsapi_ticket ，防止超过调用频率。
- * @author Jay
- *
- */
+import java.util.Formatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;  
+
 public class Sign {
     public static void main(String[] args) {
-        String jsapi_ticket = "jsapi_ticket";// 需要去获取
+        String jsapi_ticket = "jsapi_ticket";
 
         // 注意 URL 一定要动态获取，不能 hardcode
-        String url = "http://www.baidu.com";
+        String url = "http://example.com";
         Map<String, String> ret = sign(jsapi_ticket, url);
         for (Map.Entry entry : ret.entrySet()) {
-            System.out.println(entry.getKey() + " = " + entry.getValue());
+            System.out.println(entry.getKey() + ", " + entry.getValue());
         }
     };
 
