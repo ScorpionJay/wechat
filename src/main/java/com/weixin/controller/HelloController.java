@@ -2,18 +2,24 @@ package com.weixin.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weixin.entity.User;
 import com.weixin.vo.UserVo;
 
 /**
  * 测试控制器
+ * 
  * @author jay
- * @since  2016年6月3日
+ * @since 2016年6月3日
  */
 @Controller
 public class HelloController {
@@ -65,8 +71,16 @@ public class HelloController {
 		model.addAttribute("hello", "Hello------");
 		model.addAttribute("world", "World------");
 
-		
+		SecurityContext ctx = SecurityContextHolder.getContext();
+		Authentication	auth = ctx.getAuthentication();
 		model.addAttribute("username", "test");
+		if(auth.getPrincipal() instanceof UserDetails){
+			User user =(User)auth.getPrincipal();
+			model.addAttribute("username", user.getName());
+		}
+		
+		
+		
 		return "main";
 	}
 
