@@ -2,8 +2,6 @@ package com.weixin.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,19 +64,9 @@ public class HelloController {
 		log.info("thymeleaf");
 		model.addAttribute("hello", "Hello------");
 		model.addAttribute("world", "World------");
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = null;
-		if (principal instanceof UserDetails) {
-			username = ((UserDetails) principal).getUsername();
-			System.out.println(username);
-//			Iterator it = ((UserDetails) principal).getAuthorities().iterator();
-//			String authority = "";
-//			while (it.hasNext()) {
-//				authority = ((GrantedAuthority) it.next()).getAuthority();
-//				System.out.println("Authority:" + authority);
-//			}
-		}
-		model.addAttribute("username", username);
+
+		
+		model.addAttribute("username", "test");
 		return "main";
 	}
 
