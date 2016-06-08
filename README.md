@@ -15,3 +15,10 @@ spring boot
 
 - security.user.name 指定默认的用户名，默认为user.
 - security.user.password 默认的用户密码.log里会有
+
+
+#JPA
+
+# REF
+
+- http://wenku.baidu.com/link?url=osmNYOr4ytT4cUCyjLVcaE67eUDbeMZFsoi57BhumZj22vCq6xb0x-Uc7tyYxQYATpfBFThqsBFWnLWFQjZ0xwQmVLpFkYBmDMXgrMxvTYi

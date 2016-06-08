@@ -1,7 +1,11 @@
 package com.weixin.controller;
 
+import java.util.List;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.weixin.entity.User;
+import com.weixin.service.iface.UserService;
 import com.weixin.vo.UserVo;
 
 /**
@@ -26,11 +31,24 @@ public class HelloController {
 
 	private static final Logger log = LoggerFactory.getLogger(HelloController.class);
 
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value = "greet")
 	@ResponseBody
-	public String greet() {
+	public Set<UserVo> greet(){
 		log.info("greet");
-		return "hello this is jay";
+		
+		UserVo vo = new UserVo();
+		vo.setUserName("jay");
+		vo.setPassword("jay123");
+		userService.addUser(vo);
+		
+		Set<UserVo> users = userService.findAllUsers();
+		
+		log.info(users.toString());
+		
+		return users;
 	}
 
 	@RequestMapping(value = "greet1")
@@ -38,8 +56,8 @@ public class HelloController {
 	public UserVo greet1() {
 		log.info("greet1");
 		UserVo vo = new UserVo();
-		vo.setName("jay");
-		vo.setSkill("java");
+//		vo.setName("jay");
+//		vo.setSkill("java");
 		return vo;
 	}
 

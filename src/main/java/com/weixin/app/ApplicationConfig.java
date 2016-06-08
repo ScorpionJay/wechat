@@ -1,5 +1,6 @@
 package com.weixin.app;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource(value = {"classpath*:spring/*.xml"})
 //@PropertySource(value = "classpath:app.properties")
 @ComponentScan(basePackages = { "com.weixin" })
+@EnableAutoConfiguration
 public class ApplicationConfig {
 
 /*	@Bean
