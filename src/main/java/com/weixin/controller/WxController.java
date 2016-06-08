@@ -152,18 +152,6 @@ public class WxController {
 		}
 	}
 
-	/**
-	 * Get flower users
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "users")
-	@ResponseBody
-	public ResultVo getUsers() throws Exception {
-		ResultVo resultVo = new ResultVo();
-		Object obj = WeixinUtil.getUsers(TokenThread.accessToken.getAccessToken());
-		resultVo.setObj(obj);
-		return resultVo;
-	}
+	
 	
 }

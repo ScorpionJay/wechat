@@ -10,27 +10,43 @@ define(['angular'],function(){
 
 		$scope.name = "jay";
 		
-		
-		$scope.wx = {
-				appId:'get from db',
-				appSecret:'get from db',
-				token:''
-		};
+		$scope.wxInfo = {};
 		
 
-		$scope.fnGetToken = function(){
-			
-			httpService.get('/wechat/wx/token', $scope.wx).then(function(data){
+		$scope.fnGetWxInfo = function(){
+			$scope.title = "jay's test account";
+			httpService.get('/wechat/wxManage/'+$scope.title ).then(function(data){
 				console.log('success');
 				console.log(data);
-				$scope.wx.token = data.obj;
+				$scope.wxInfo = data;
 			},function(data){
 				console.log('error');
 				console.log(data);
 			});
-			
 		}
 		
+		
+		$scope.fnGetToken = function(){
+			httpService.get('/wechat/wx/token', $scope.wxInfo).then(function(data){
+				console.log('success');
+				console.log(data);
+				$scope.wxInfo.token = data.obj;
+			},function(data){
+				console.log('error');
+				console.log(data);
+			});
+		}
+		
+		$scope.fnGetFollowers = function(){
+			httpService.get('/wechat/wxManage/users').then(function(data){
+				console.log('success');
+				console.log(data);
+				$scope.followers = data.obj;
+			},function(data){
+				console.log('error');
+				console.log(data);
+			});
+		}
 		
 	});
 

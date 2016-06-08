@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.weixin.service.iface.WxService;
+import com.weixin.util.TokenThread;
+import com.weixin.util.WeixinUtil;
+import com.weixin.vo.ResultVo;
 import com.weixin.vo.WechatVo;
 
 /**
@@ -56,5 +60,19 @@ public class WxManageController {
 	@RequestMapping(value = "{id}/delete")
 	public void delete(@PathVariable String id) {
 		wxService.delete(id);
+	}
+	
+	/**
+	 * Get flower users
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "users")
+	@ResponseBody
+	public ResultVo getUsers() throws Exception {
+		ResultVo resultVo = new ResultVo();
+		Object obj = WeixinUtil.getUsers(TokenThread.accessToken.getAccessToken());
+		resultVo.setObj(obj);
+		return resultVo;
 	}
 }

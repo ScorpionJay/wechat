@@ -4,22 +4,91 @@ home template
 
 <hr>
 
-<div class="panel">
-	<div class='row'>
-		<label>AppID(应用ID)</label>
-		<input ng-model='wx.appId' />
+<div class="panel panel-primary" ng-init="fnGetWxInfo()">
+  <div class="panel-heading">Get wx info</div>
+  <div class="panel-body">
+    <div>
+		<div class='row'>
+			<label class="col-xs-3">AppID(应用ID)</label>
+			<input class="col-xs-6" ng-model='wxInfo.appId' />
+		</div>
+		<div class='row'>
+			<label class="col-xs-3">AppSecret(应用密钥)</label>
+			<input  class="col-xs-6" ng-model='wxInfo.appSecret' />
+		</div>
+		<div class='row'>
+			<label class="col-xs-3">Token</label>
+			<input class="col-xs-6" ng-model='wxInfo.token' />
+		</div>
+		<div class='row'>
+			<label class="col-xs-3">Token Date</label>
+			<input class="col-xs-6" ng-model="wxInfo.tokenDate | date:'HH:mm:ss.sss' " />
+		</div>
+		<div class='row'>
+			<label class="col-xs-12">
+				<button class="btn-primary" ng-click="fnGetToken()">Refresh token</button>
+			</label>
+		</div>
 	</div>
-	<div class='row'>
-		<label>AppSecret(应用密钥)</label>
-		<input ng-model='wx.appSecret' />
-	</div>
-	<div class='row'>
-		<label>Token</label>
-		<input ng-model='wx.token' />
-	</div>
-	<div class='row'>
-		<button ng-click='fnGetToken()'>Submit</button>
-	</div>
+  </div>
+</div>
 
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Get followers</div>
+  <div class="panel-body">
+    <div>
+    
+    	<div class='row'>
+			<label class="col-xs-12">
+				<button class="btn-primary" ng-click="fnGetFollowers()">Get followers</button>
+			</label>
+		</div>
+    
+    	<div class='row' ng-repeat="obj in followers">
+    		<div class='row col-xs-4'>
+				<img class="col-xs-12" ng-src={{obj.headImgUrl}} style="width:130px;height:100px"/>
+			</div>
+			<div class='row col-xs-8'>
+	    		<div class='row'>
+					<label class="col-xs-3">nickname</label>
+					<label class="col-xs-6" ng-bind='obj.nickname' ></label>
+				</div>
+				<div class='row'>
+					<label class="col-xs-3">sex</label>
+					<label class="col-xs-6" ng-bind='obj.sex === 1 ? "boy":"girl"' ></label>
+				</div>
+				<div class='row'>
+					<label class="col-xs-3">country</label>
+					<label class="col-xs-6" ng-bind='obj.country' ></label>
+				</div>
+				<div class='row'>
+					<label class="col-xs-3">province</label>
+					<label class="col-xs-6" ng-bind='obj.province' ></label>
+				</div>
+				<div class='row'>
+					<label class="col-xs-3">city</label>
+					<label class="col-xs-6" ng-bind='obj.city' ></label>
+				</div>
+			</div>
+    	</div>
+		
+		
+	</div>
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">Menu</div>
+  <div class="panel-body">
+    menu....
+  </div>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">resource</div>
+  <div class="panel-body">
+   resource...
+  </div>
 </div>
 
