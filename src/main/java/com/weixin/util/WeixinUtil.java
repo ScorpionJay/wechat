@@ -1,6 +1,9 @@
 package com.weixin.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -142,10 +145,19 @@ public class WeixinUtil {
 	/*
 	 * Get user list
 	 */
-	public static JSONObject getUsers(String token)throws ParseException, IOException {
+	public static List<UserInfo> getUsers(String token)throws ParseException, IOException {
 		String url = GET_USERS_URL.replace("ACCESS_TOKEN", token);
 		JSONObject jsonObject = doGetStr(url);
-		return jsonObject;
+		Object obj = jsonObject.get("data");
+		Map<String, List<String>> map = (Map<String, List<String>>)obj;
+		List<String> list  = map.get("openid");
+		List<UserInfo> userList = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			UserInfo userInfo = WeixinUtil.getUser(token, list.get(i));
+			userList.add(userInfo);
+		}
+		
+		return userList;
 	}
 	
 	

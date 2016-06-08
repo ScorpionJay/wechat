@@ -9,17 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.weixin.service.iface.WxService;
 import com.weixin.util.CheckUtil;
 import com.weixin.util.MessageUtil;
 import com.weixin.util.TokenThread;
 import com.weixin.util.WeixinUtil;
 import com.weixin.vo.AccessToken;
 import com.weixin.vo.ResultVo;
+import com.weixin.vo.WechatVo;
 
 import net.sf.json.JSONObject;
 
@@ -33,6 +36,9 @@ import net.sf.json.JSONObject;
 public class WxController {
 
 	private static final Logger log = LoggerFactory.getLogger(WxController.class);
+	
+	@Autowired
+	private WxService wxService;
 	
 	@RequestMapping(value = "token")
 	@ResponseBody
@@ -54,6 +60,14 @@ public class WxController {
 		log.info("-------------------------");
 		log.info(TokenThread.APPID);
 		log.info(TokenThread.APPSECRET);
+		
+		WechatVo wechatVo =  new WechatVo();
+		wechatVo.setId("5758256f2530b3e6080571a1"); // hard code
+		wechatVo.setAppId(appId);
+		wechatVo.setAppSecret(appSecret);
+		wechatVo.setToken(accessToken.getAccessToken());
+		
+		wxService.update(wechatVo);
 		
 		return resultVo;
 	}
@@ -138,4 +152,18 @@ public class WxController {
 		}
 	}
 
+	/**
+	 * Get flower users
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "users")
+	@ResponseBody
+	public ResultVo getUsers() throws Exception {
+		ResultVo resultVo = new ResultVo();
+		Object obj = WeixinUtil.getUsers(TokenThread.accessToken.getAccessToken());
+		resultVo.setObj(obj);
+		return resultVo;
+	}
+	
 }

@@ -1,22 +1,17 @@
-package com.weixin.entity.mongo;
+package com.weixin.vo;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * 微信信息
  * @author jay
  * @since 2016年6月8日
  */
-@Document
-public class Wechat implements Serializable {
+public class WechatVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
 	private String id;
 
 	/**
@@ -47,14 +42,15 @@ public class Wechat implements Serializable {
 	/**
 	 * 获取jsapi ticket时间
 	 */
-	private Date jsapiTicketDate =  new Date();
+	private Date jsapiTicketDate = new Date();
 
 	/**
 	 * 标题 用户区分公众号名称
 	 */
-	private String title = "";
+	private String title;
 	
-	public Wechat() {
+	
+	public WechatVo() {
 	}
 
 	public String getId() {
@@ -121,4 +117,13 @@ public class Wechat implements Serializable {
 		this.title = title;
 	}
 
+	@Override
+	public String toString() {
+		return "WechatVo [id=" + id + ", appId=" + appId + ", appSecret=" + appSecret + ", token=" + token
+				+ ", jsapiTicket=" + jsapiTicket + ", tokenDate=" + tokenDate + ", jsapiTicketDate=" + jsapiTicketDate
+				+ ", title=" + title + "]";
+	}
+
+	
+	
 }

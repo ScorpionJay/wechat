@@ -27,11 +27,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVo findByUserName(String userName) {
 		User user = userRepository.findByUserName(userName);
-
-		UserVo userVo = new UserVo();
-		userVo.setId(user.getId());
-		userVo.setUserName(user.getUserName());
-		userVo.setPassword(user.getPassword());
+		UserVo userVo = null; 
+		if(user != null){
+			userVo = new UserVo();
+			userVo.setId(user.getId());
+			userVo.setUserName(user.getUserName());
+			userVo.setPassword(user.getPassword());
+		}
 
 		return userVo;
 	}
@@ -58,7 +60,9 @@ public class UserServiceImpl implements UserService {
 	public void addUser(UserVo userVo) {
 
 		// check userName exist
-		if( findByUserName(userVo.getUserName()) != null ){
+		UserVo vo  = findByUserName(userVo.getUserName());
+		
+		if( vo != null ){
 			throw  new MyException(100,"用户名已存在！");
 		}
 		
