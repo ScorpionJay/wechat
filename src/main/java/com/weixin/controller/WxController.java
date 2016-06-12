@@ -62,7 +62,7 @@ public class WxController {
 		log.info(TokenThread.APPSECRET);
 		
 		WechatVo wechatVo =  new WechatVo();
-		wechatVo.setId("5758256f2530b3e6080571a1"); // hard code
+		wechatVo.setId("575cc38f8cda28f587413448"); // hard code
 		wechatVo.setAppId(appId);
 		wechatVo.setAppSecret(appSecret);
 		wechatVo.setToken(accessToken.getAccessToken());
