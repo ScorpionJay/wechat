@@ -1,5 +1,6 @@
 package com.weixin.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,8 @@ public class WeixinUtil {
 	private static final String GET_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=ACCESS_TOKEN";
 	
 	private static final String GET_JSPAI_URL = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi";
+	
+	private static final String MEDIA_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 	
 	/**
 	 * get请求
@@ -235,7 +238,7 @@ public class WeixinUtil {
 	 */
 	public static void getMaterial(String token){
 		String url = GET_MATERIAL_URL.replace("ACCESS_TOKEN", token);	
-		JSONObject jsonObject = doPostStr(url, "{'media_id': 'sKGjZ2k5WZhG7tKxqEn3J91GRYbx7ZueIFYLnCKB2B7MemJ3iBcbCRiZANi4II3R'}");
+		JSONObject jsonObject = doPostStr(url, "{'media_id': 'KwrZlkyzAi9rx22MunDJ3TiELtlTloEJUQYTZB-6CXQ8vUuWp02YJTy_pUQsJIN5'}");
 		System.out.println(jsonObject.toString());
 	}
 	
@@ -245,11 +248,22 @@ public class WeixinUtil {
 	public static String getJsapiToken(String token){
 		String url = GET_JSPAI_URL.replace("ACCESS_TOKEN", token);	
 		JSONObject jsonObject = doGetStr(url);
-		System.out.println("hack");
 		System.out.println(jsonObject.toString());
 		
 		return jsonObject.getString("ticket");
 			
 	}
+
+	
+	public static String mediaUpload(String token,File file,String type){
+		String url = MEDIA_UPLOAD_URL.replace("ACCESS_TOKEN", token).replace("TYPE", type);	
+		JSONObject jsonObject = doPostStr(url, "{'media': file}");
+		System.out.println(jsonObject.toString());
+		
+		return jsonObject.getString("ticket");
+			
+	}
+	
+	
 	
 }

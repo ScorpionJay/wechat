@@ -22,3 +22,12 @@ spring boot
 # REF
 
 - http://wenku.baidu.com/link?url=osmNYOr4ytT4cUCyjLVcaE67eUDbeMZFsoi57BhumZj22vCq6xb0x-Uc7tyYxQYATpfBFThqsBFWnLWFQjZ0xwQmVLpFkYBmDMXgrMxvTYi
+
+
+
+
+-	token
+-	follwers
+-	menu
+-   小黄鸡
+-	resources   upload

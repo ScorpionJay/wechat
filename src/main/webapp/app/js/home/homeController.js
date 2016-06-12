@@ -48,6 +48,17 @@ define(['angular'],function(){
 			});
 		}
 		
+		$scope.fnGetMenus = function(){
+			httpService.get('/wechat/wxManage/menus').then(function(data){
+				console.log('success');
+				console.log(data);
+				$scope.menus = data.obj;
+			},function(data){
+				console.log('error');
+				console.log(data);
+			});
+		}
+		
 	});
 
 });

@@ -34,8 +34,8 @@ public class WxServcieImplTest {
 	@Test
 	public void testAddWechat() {
 		WechatVo vo = new WechatVo();
-		vo.setAppId("xxx");
-		vo.setAppSecret("xxx");
+		vo.setAppId("wx8dfda79a073efa18");
+		vo.setAppSecret("43b865a6d62dfdec8681ccaf9f804533");
 		vo.setTitle("jay's test account");
 		wxService.addWx(vo);
 		logger.info("add complete");
