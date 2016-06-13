@@ -31,3 +31,16 @@ spring boot
 -	menu
 -   小黄鸡
 -	resources   upload
+
+
+## 服务器连接
+url 服务器的地址		80端口 这里用花生壳映射
+token 自定义		
+
+##　获取access_token
+appid
+appsecret
+
+调用接口需要access_token,有效期2个小时，一天限调2000次，所以自己的服务需要缓存起来。
+
+小黄鸡功能不需要token

@@ -6,18 +6,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author : Jay
+ * @author jay
+ * @since 2016-6-7
  */
 public class CheckUtil {
 
 	private static final Logger log = LoggerFactory.getLogger(CheckUtil.class);
-	
-	public static boolean checkSignature(String signature, String timestamp,String nonce) {
 
-		String token = TokenThread.accessToken.getAccessToken();
-		
-		log.info("token = {}",token);
-		
+	public static boolean checkSignature(String signature, String timestamp, String nonce) {
+
+		String token = "mynameisjay";// 这里可以自定义
+
+		log.info("token = {}", token);
+
 		String[] arr = new String[] { token, timestamp, nonce };
 
 		// 排序
@@ -31,7 +32,7 @@ public class CheckUtil {
 
 		// sha1 加密
 		EncryptUtil sha1 = new EncryptUtil();
-		String str = sha1.Encrypt(sb.toString(), "SHA-1") ;
+		String str = sha1.Encrypt(sb.toString(), "SHA-1");
 		System.out.println(str);
 		return signature.equals(str);
 

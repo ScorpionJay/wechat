@@ -3,6 +3,7 @@ package com.weixin.util;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,6 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -26,10 +26,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.util.Hash;
 import com.weixin.vo.AccessToken;
+import com.weixin.vo.NewsVo;
 import com.weixin.vo.Oauth2Token;
 import com.weixin.vo.UserInfo;
 import com.weixin.vo.WxMediaVo;
@@ -57,7 +57,40 @@ public class WeixinUtil {
 	private static final String MEDIA_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
 
 	private static final String GET_MEDIA_URL = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
+	
+	/**
+	 * 添加永久素材
+	 */
+	private static final String METERIAL_ADD_NEWS = "https://api.weixin.qq.com/cgi-bin/material/add_news?access_token=ACCESS_TOKEN";
+	
+	/**
+	 * 上传图片
+	 */
+	private static final String UPLOAD_IMG = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=ACCESS_TOKEN";
+	
+	/**
+	 * 上传永久素材
+	 */
+	private static final String MATERIAL_ADD_URL = "https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=ACCESS_TOKEN";
 
+	
+	/**
+	 * 获取素材总数
+	 */
+	private static final String GET_METERIALCOUNT_URL = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=ACCESS_TOKEN";
+	
+	
+	/**
+	 * 获取素材列表
+	 */
+	private static final String GET_METERIALLIST_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=ACCESS_TOKEN";
+	
+	
+	/**
+	 * 群发
+	 */
+	private static final String SEND_ALL_URL = "https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=ACCESS_TOKEN";
+	
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -320,4 +353,158 @@ public class WeixinUtil {
 		log.info(result.toString());
 	}
 
+	
+	
+	/**
+	 * 添加图文
+	 * @param token
+	 * @param newsVo
+	 */
+	public void meterialAddNews(String token,NewsVo newsVo){
+		String url = METERIAL_ADD_NEWS.replace("ACCESS_TOKEN", token);
+		String result = restTemplate.postForObject(url, newsVo, String.class);
+
+		log.info(result.toString());
+//		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+		
+		// 这里的media_id 保存到本地数据库
+		
+		
+	}
+	
+	
+	
+	
+	/**
+	 * 获取素材总数
+	 * @param token
+	 * @param newsVo
+	 */
+	public void getMeteialCount(String token){
+		String url = GET_METERIALCOUNT_URL.replace("ACCESS_TOKEN", token);
+		String result = restTemplate.getForObject(url, String.class);
+
+		log.info(result.toString());
+//		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+		
+		/**
+		 * {"voice_count":0,"video_count":0,"image_count":2,"news_count":1}
+		 */
+		// 这里的media_id 保存到本地数据库
+		
+		
+	}
+	
+	
+	
+	/**
+	 * 获取素材总数
+	 * @param token
+	 * @param newsVo
+	 */
+	public void getMeteialList(String token){
+		String url = GET_METERIALLIST_URL.replace("ACCESS_TOKEN", token);
+		Map<String, Object> param = new HashMap<>();
+		param.put("type", "image");
+		param.put("offset", 0);
+		param.put("count", 10);
+		String result = restTemplate.postForObject(url, param, String.class);
+
+		log.info(result.toString());
+//		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+		
+		/**
+		 * {"voice_count":0,"video_count":0,"image_count":2,"news_count":1}
+		 */
+		// 这里的media_id 保存到本地数据库
+		
+		
+	}
+	
+
+	/**
+	 * 群发
+	 * user not agree mass-send protocol   没有权限
+	 * @param token
+	 */
+	public void sendALL(String token){
+		String url = SEND_ALL_URL.replace("ACCESS_TOKEN", token);
+		Map<String, Object> param = new HashMap<>();
+		
+		Map<String, Object> mpnews = new HashMap<>();
+		mpnews.put("media_id", "X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"); //test
+		param.put("mpnews", mpnews);
+		param.put("msgtype", "mpnews");
+		
+		Map<String, Object> filter = new HashMap<>();
+		filter.put("is_to_all", true);
+		param.put("filter", filter);
+		
+		
+		
+		String result = restTemplate.postForObject(url, param, String.class);
+
+		log.info(result.toString());
+//		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+		
+		/**
+		 * {"voice_count":0,"video_count":0,"image_count":2,"news_count":1}
+		 */
+		// 这里的media_id 保存到本地数据库
+		
+		
+	}
+	
+	/**
+	 * Upload image 
+	 * @param token
+	 * @param file
+	 */
+	public void uploadImg(String token,File file){
+		String url = UPLOAD_IMG.replace("ACCESS_TOKEN", token);
+		FileSystemResource resource = new FileSystemResource(file);
+		MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+		param.add("jarFile", resource);
+		String imgUrl = restTemplate.postForObject(url, param, String.class);
+		log.info(imgUrl);
+
+		// http://mmbiz.qpic.cn/mmbiz/NlnaapibtH6EVOVBmPlf1TQI6Mwt6DLO79rhQNHZYE4Q12NN88coMAWcMAibeRaeMqRnQDAR90ibJk4sNqNm2EWkQ/0
+		// 保存到本地数据库
+		
+		
+	}
+	
+	/**
+	 * access_token	是	调用接口凭证
+	 *	type	是	媒体文件类型，分别有图片（image）、语音（voice）、视频（video）和缩略图（thumb）
+	 *	media	是	form-data中媒体文件标识，有filename、filelength、content-type等信息
+	 *{"media_id":"X-fJF8E32mDZQnq6XgyDBRGqKvuTPm9YJqFPk7dqcUY","url":"https:\/\/mmbiz.qlogo.cn\/mmbiz\/NlnaapibtH6EVOVBmPlf1TQI6Mwt6DLO79rhQNHZYE4Q12NN88coMAWcMAibeRaeMqRnQDAR90ibJk4sNqNm2EWkQ\/0?wx_fmt=jpeg"}
+	 * @param token
+	 * @param file
+	 * @param type
+	 */
+	public void materialAdd(String token,File file,String type){
+		String url = MATERIAL_ADD_URL.replace("ACCESS_TOKEN", token);
+		FileSystemResource resource = new FileSystemResource(file);
+		MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
+		param.add("media", resource);
+		param.add("type", type);
+		
+		String result = restTemplate.postForObject(url, param, String.class);
+		log.info(result);
+		
+		JSONObject obj = JSONObject.fromObject(result);
+		
+		String mediaId = obj.getString("media_id");
+		log.info(mediaId);
+		if(type.equals("image")){
+			String imgUrl = obj.getString("url");
+			log.info(imgUrl);
+		}
+		
+		// 本地是否需要保存
+		
+	}
+	
+	
 }

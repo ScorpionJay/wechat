@@ -3,6 +3,8 @@ package com.weixin.util;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.weixin.app.Application;
 import com.weixin.service.iface.WxService;
+import com.weixin.vo.ArticleVo;
+import com.weixin.vo.NewsVo;
 import com.weixin.vo.WechatVo;
 
 /**
@@ -100,4 +104,59 @@ public class WeixinUtilTest {
 		weixinUtil.getMedia(vo.getToken(), "T7Nk3B95drKWVXL5HaLV06Ka93vUYZfoxsGlECIO7wM632K8-W5N2zJYxTGBxgAk");
 	}
 
+	
+	@Test
+	public void testUploadImg() {
+		File file = new File("f:/test.jpg");
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.uploadImg(vo.getToken(), file);
+	}
+	
+	@Test
+	public void testMaterialAdd() {
+		File file = new File("f:/jay.jpg");
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.materialAdd(vo.getToken(), file,"image");
+		
+	}
+	
+	@Test
+	public void testMeterialAddNews() {
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		
+		NewsVo newsVo = new NewsVo();
+		
+		ArticleVo articleVo = new ArticleVo("test", "X-fJF8E32mDZQnq6XgyDBdTSYbO_sGK_u6QPYGqZpJk", "jay", "简介", 1, "这是测试内容", "http://scorpionjay.github.io/");
+		
+		List<ArticleVo> list = new ArrayList<>();
+		list.add(articleVo);
+		
+		newsVo.setArticles(list);
+		
+		weixinUtil.meterialAddNews(vo.getToken(), newsVo);
+		
+	}
+	
+	@Test
+	public void testGetMeteialCount() {
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.getMeteialCount(vo.getToken());
+		
+	}
+	
+	@Test
+	public void testGetMeteialList() {
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.getMeteialList(vo.getToken());
+		
+	}
+	
+	@Test
+	public void testSendALL() {
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.sendALL(vo.getToken());
+		
+	}
+	
+	
 }
