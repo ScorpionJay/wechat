@@ -287,13 +287,19 @@ public class WeixinUtil {
 	}
 
 	/**
-	 * Get OAuth Access Token
+	 * Get material
 	 */
-	public static void getMaterial(String token) {
+	public  void getMaterial(String token,String mediaId) {
 		String url = GET_MATERIAL_URL.replace("ACCESS_TOKEN", token);
-		JSONObject jsonObject = doPostStr(url,
-				"{'media_id': 'KwrZlkyzAi9rx22MunDJ3TiELtlTloEJUQYTZB-6CXQ8vUuWp02YJTy_pUQsJIN5'}");
-		System.out.println(jsonObject.toString());
+//		JSONObject jsonObject = doPostStr(url,
+//				"{'media_id': 'X-fJF8E32mDZQnq6XgyDBTI7iriawzkKNQv2QzrzrYg");
+		Map<String, Object> params = new HashMap<>();
+		params.put("media_id", mediaId);
+		String result = restTemplate.postForObject(url, params, String.class);
+
+		log.info(result.toString());
+		
+//		System.out.println(jsonObject.toString());
 	}
 
 	/**
@@ -366,6 +372,7 @@ public class WeixinUtil {
 
 		log.info(result.toString());
 //		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+//		X-fJF8E32mDZQnq6XgyDBTI7iriawzkKNQv2QzrzrYg
 		
 		// 这里的media_id 保存到本地数据库
 		

@@ -79,7 +79,10 @@ public class WeixinUtilTest {
 
 	@Test
 	public void testGetMaterial() {
-		WeixinUtil.getMaterial("RAXYqeU-aVSjeSzVQMROsx7DkkFN8ATTkjIxvxrpEPQasfPz2guXpqIPwhl2gtogtzaJnei_rWU-x9Pb_VX4AQWVuGTcdjIjCVaU0ZK-gDcdk-La_iO6xnB8le_xE2vRYFNaAEAELT");
+		WechatVo vo = wxService.findByTitle("jay's test account");
+//		weixinUtil.getMaterial(vo.getToken(),"X-fJF8E32mDZQnq6XgyDBTI7iriawzkKNQv2QzrzrYg");
+		weixinUtil.getMaterial(vo.getToken(),"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I");
+		
 	}
 
 	@Test
