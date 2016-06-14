@@ -44,3 +44,16 @@ appsecret
 调用接口需要access_token,有效期2个小时，一天限调2000次，所以自己的服务需要缓存起来。
 
 小黄鸡功能不需要token
+
+
+
+## 加密 （注册的密码需要加密）
+~~~java
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(customUserDetailsService()).passwordEncoder(new BCryptPasswordEncoder());
+	}
+	
+	BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+	String s = b.encode("jay");
+~~~
