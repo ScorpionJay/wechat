@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.weixin.security.CustomAuthenticationProvider;
+import com.weixin.security.CustomLoginFilter;
 import com.weixin.security.CustomUserDetailsService;
 import com.weixin.security.LoginSuccessHandler;
 
@@ -28,18 +30,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 其他访问均系要验证权限
 				.anyRequest().authenticated()
 
+				
 				.and().formLogin()
 
+				
+				
 				// 登录页面是"/login"
 				.loginPage("/login").permitAll()
 
+				
 				// 登录成功后存储用户信息c
 				.successHandler(loginSuccessHandler()).defaultSuccessUrl("/main").and().logout()
 
 				// 退出后的默认地址
 				.logoutSuccessUrl("/login.html").permitAll().logoutUrl("/logout").invalidateHttpSession(true)
 
-				.and().csrf().disable();
+				.and().csrf().disable()
+				
+		;//.addFilter(customLoginFilter());
+				
+				
+				;//.authenticationProvider(customAuthenticationProvider());
+		
 
 	}
 
@@ -58,4 +70,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return new CustomUserDetailsService();
 	}
 
+	
+	@Bean
+	public CustomAuthenticationProvider customAuthenticationProvider() {
+		return new CustomAuthenticationProvider();
+	}
+	
+//	@Bean
+//	public CustomLoginFilter customLoginFilter() {
+//		return new CustomLoginFilter();
+//	}
+	
 }
