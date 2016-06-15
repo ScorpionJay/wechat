@@ -25,6 +25,11 @@ public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticat
 	protected void additionalAuthenticationChecks(UserDetails userDetails,
 			UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 		// 如果想做点额外的检查,可以在这个方法里处理,校验不通时,直接抛异常即可
+		
+		CustomToken token = (CustomToken) authentication;
+		
+		System.out.println(token.getToken());
+		
 		System.out.println("CustomAuthenticationProvider.additionalAuthenticationChecks() is called!");
 	}
 
@@ -33,17 +38,13 @@ public class CustomAuthenticationProvider extends AbstractUserDetailsAuthenticat
 			throws AuthenticationException {
 		System.out.println("CustomAuthenticationProvider.retrieveUser() is called!");
 
-		String[] whiteLists = new String[] { "ADMIN", "SUPERVISOR", "JIMMY" };
-
-		// 如果用户在白名单里,直接放行(注:仅仅只是演示,千万不要在实际项目中这么干!)
-		if (Arrays.asList(whiteLists).contains(username)) {
-			Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-			UserDetails user = new User(username, "whatever", authorities);
-			return user;
-		}
-
-		return new User(username, "no-password", false, false, false, false, new ArrayList<GrantedAuthority>());
+		
+		
+		SecurityUser securityUser = new SecurityUser();
+		securityUser.setName(username);
+		return securityUser;//  new User(username, "no-password", false, false, false, false, new ArrayList<GrantedAuthority>());
 	}
+	
+	
 
 }

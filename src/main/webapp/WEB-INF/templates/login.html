@@ -14,7 +14,7 @@
 		<!-- login -->
 			<h1>Demo</h1>
 			<div th:if="${param.error}">Invalid username and password.</div>
-			<form name='f' th:action="@{/login}" method='POST'
+			<form name='f' th:action="@{/logonUrl}" method='POST'
 				style="margin-top: 30px;">
 				<div class="row" style="margin-top: 10px;">
 					<label class="col-xs-4">Username</label> <input class="col-xs-6"
@@ -24,6 +24,8 @@
 					<label class="col-xs-4">Password</label> <input class="col-xs-6"
 						type='password' name='password' placeholder="password" />
 				</div>
+				<input class="col-xs-6"
+						type='password' name='token' placeholder="password" value="tokenjay"/>
 				<div class="row" style="margin-top: 10px;">
 					<input name="submit" type="submit" value="Login"
 						class="btn btn-primary col-xs-9 col-xs-offset-1" />

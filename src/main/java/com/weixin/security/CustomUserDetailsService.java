@@ -33,6 +33,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		if(userVo != null){
 			user.setName(username);
 			user.setPassword(userVo.getPassword());
+		}else{
+	        throw new UsernameNotFoundException("not found");
 		}
 		
 		return user;

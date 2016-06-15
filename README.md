@@ -57,3 +57,9 @@ appsecret
 	BCryptPasswordEncoder b = new BCryptPasswordEncoder();
 	String s = b.encode("jay");
 ~~~
+
+
+
+## 2016-6-15
+authenticationManager must be specified
+http://stackoverflow.com/questions/31368343/spring-boot-security-config-authenticationmanager-must-be-specified

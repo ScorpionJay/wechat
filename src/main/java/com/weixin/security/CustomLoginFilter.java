@@ -3,7 +3,6 @@ package com.weixin.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -12,21 +11,31 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @author jay
  * @since 2016年6月14日
  */
-public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
+public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter  {
+
 
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-
-		String username = obtainUsername(request).toUpperCase().trim();
-		String password = obtainPassword(request);
-
-		UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
-
-		setDetails(request, authRequest);
-		//return this.getAuthenticationManager().authenticate(authRequest);
-
-		return super.attemptAuthentication(request, response);
+		
+		//获取用户名、密码数据  
+	    String username = obtainUsername(request);  
+	    String password = obtainPassword(request);  
+	    String token = request.getParameter("token");
+	    if (username == null) {  
+	        username = "";  
+	    }  
+	    if (password == null) {  
+	        password = "";  
+	    }  
+	    
+	    username = username.trim(); 
+	    System.out.println("hack.................");
+	    CustomToken authRequest = new CustomToken(username, password,token);  
+	    setDetails(request, authRequest);  
+		return this.getAuthenticationManager().authenticate(authRequest);
 	}
+
+
 
 }
