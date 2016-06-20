@@ -105,16 +105,33 @@ home template
 </div>
 
 
+
+
 <div class="container" style="margin-top:100px;">
   
   <div>
-  	上传测试
+  	test
   	<form	action="/wechat/wxManage/save" method="post" enctype="multipart/form-data">
   		<input type="file" name="file">
-  		<input type="submit" value="淇濆瓨"/>
+  		<input type="submit" value="Upload"/>
   	</form>
   	
   </div>
 
 </div>
 
+<div class="panel panel-primary">
+  <div class="panel-heading"></div>
+  <div class="panel-body">
+   	<div class='row'>
+			<label class="col-xs-12">
+				<button class="btn-primary" ng-click="fnGetMeteials()">Get followers</button>
+			</label>
+		</div>
+	</div>
+	<div ng-repeat="item in meteials.item">
+	{{item.url}}
+		<img ng-src="{{item.url}}">
+	</div>
+  </div>
+</div>

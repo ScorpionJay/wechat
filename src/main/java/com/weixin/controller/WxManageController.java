@@ -6,6 +6,7 @@ package com.weixin.controller;
 
 import java.io.File;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -110,15 +111,21 @@ public class WxManageController {
 		//image.setSummary(summary);
 		//image.setPath(fileId);
 		
-		File f = new File("f:test.jpg");
-		 file.transferTo(f);
-		
-		// weixinUtil.mediaUpload(TokenThread.accessToken.getAccessToken(),file, "image");
+		File f = new File("test.jpg");
+		file.transferTo(f);
+		weixinUtil.mediaUpload(TokenThread.accessToken.getAccessToken(),f, "image");
 		
 		//imageService.saveImage(image);
 		
 	}
 	
+	
+	@RequestMapping(value = "meteials")
+	@ResponseBody
+	public String getMeteials() {
+		return weixinUtil.getMeteialList(TokenThread.accessToken.getAccessToken());
+		
+	}
 	
 	
 }

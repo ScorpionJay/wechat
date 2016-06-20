@@ -409,7 +409,7 @@ public class WeixinUtil {
 	 * @param token
 	 * @param newsVo
 	 */
-	public void getMeteialList(String token){
+	public String getMeteialList(String token){
 		String url = GET_METERIALLIST_URL.replace("ACCESS_TOKEN", token);
 		Map<String, Object> param = new HashMap<>();
 		param.put("type", "image");
@@ -418,6 +418,7 @@ public class WeixinUtil {
 		String result = restTemplate.postForObject(url, param, String.class);
 
 		log.info(result.toString());
+		return result;
 //		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
 		
 		/**

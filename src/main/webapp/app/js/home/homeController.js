@@ -59,6 +59,18 @@ define(['angular'],function(){
 			});
 		}
 		
+		$scope.fnGetMeteials = function(){
+			httpService.get('/wechat/wxManage/meteials').then(function(data){
+				console.log('success');
+				console.log(data);
+				$scope.meteials = data;
+			},function(data){
+				console.log('error');
+				console.log(data);
+			});
+		}
+		
+		
 	});
 
 });
