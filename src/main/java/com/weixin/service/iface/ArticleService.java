@@ -12,24 +12,24 @@ import com.weixin.vo.PaginationVo;
 public interface ArticleService {
 
 	/**
-	 * 新增文章
-	 * @param articleVo	文章vo
+	 * Add
+	 * @param articleVo
 	 */
-    void saveArticle(ArticleVo articleVo);
+    void addArticle(ArticleVo articleVo);
     
     
     /**
-	 * 删除文章
+	 * Delete
 	 * @param articleId	文章id
 	 */
-    void deleteArticleByArticleId(String articleId);
+    void deleteById(String articleId);
 	
     /**
-     * 根据文章id获取文章
+     * Get article by Id
      * @param articleId     文章id
      * @return
      */
-    ArticleVo findArticleByArticleId(String articleId);
+    ArticleVo findById(String articleId);
 
     /**
      * 获取根据时间排序后的文章

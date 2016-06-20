@@ -68,7 +68,7 @@ define(['angular','angular-bootstrap','ckeditor'],function(){
 						content:content,
 				};
 				
-				httpService.post('api/article/saveArticle',null,data).then(function(data){
+				httpService.post('api/article/add',null,data).then(function(data){
 				 	console.log(data);
 				});
 				

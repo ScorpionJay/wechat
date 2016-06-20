@@ -29,7 +29,7 @@ public class ArticleServiceImpl implements ArticleService {
     MongoTemplate mongoTemplate; 
 
     @Override
-    public ArticleVo findArticleByArticleId(String articleId) {
+    public ArticleVo findById(String articleId) {
         Article article = articleRepository.findOne(articleId);
         ArticleVo articleVo = new ArticleVo();
         if(null != article){
@@ -74,13 +74,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 	@Override
-	public void saveArticle(ArticleVo articleVo) {
-		Article article = new Article( articleVo.getTitle(), articleVo.getContent().substring(0, 200).concat("..."),articleVo.getContent(), new Date());
+	public void addArticle(ArticleVo articleVo) {
+		Article article = new Article( articleVo.getTitle(), "introduce",articleVo.getContent(), new Date());
 		articleRepository.save(article);
 	}
 
 	@Override
-	public void deleteArticleByArticleId(String articleId) {
+	public void deleteById(String articleId) {
 		articleRepository.delete(new Article(articleId));
 	}
 }

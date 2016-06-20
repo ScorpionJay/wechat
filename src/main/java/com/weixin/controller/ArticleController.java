@@ -30,13 +30,18 @@ public class ArticleController {
 	
 	@RequestMapping("getArticleById")
 	public ArticleVo getArticleById(@RequestParam(value="id" ,defaultValue = "1") String id){
-		ArticleVo articleVo =  articleService.findArticleByArticleId(id);
+		ArticleVo articleVo =  articleService.findById(id);
 		return articleVo;
 	}
 	
-	@RequestMapping(value="saveArticle",method=RequestMethod.POST)
+	/**
+	 * Add article
+	 * @param articleVo
+	 * @return
+	 */
+	@RequestMapping(value="add",method=RequestMethod.POST)
 	public ArticleVo saveArticle(@RequestBody ArticleVo articleVo){
-		articleService.saveArticle(articleVo);
+		articleService.addArticle(articleVo);
 		return articleVo;
 	}
 }

@@ -18,11 +18,11 @@ home template
 		</div>
 		<div class='row'>
 			<label class="col-xs-3">Token</label>
-			<input class="col-xs-6" ng-model='wxInfo.token' />
+			<label class="col-xs-6" ng-bind='wxInfo.token' ></label>
 		</div>
 		<div class='row'>
 			<label class="col-xs-3">Token Date</label>
-			<input class="col-xs-6" ng-model="wxInfo.tokenDate | date:'HH:mm:ss.sss' " />
+			<label class="col-xs-6" ng-bind="wxInfo.tokenDate | date:'HH:mm:ss' " /></label>
 		</div>
 		<div class='row'>
 			<label class="col-xs-12">
