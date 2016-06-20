@@ -29,8 +29,8 @@ define(['angular'],function(){
 			return _query('get',url,params);
 		}
 
-		httpService.post = function(url,params){
-			return _query('post',url,params);
+		httpService.post = function(url,params,data){
+			return _query('post',url,params,data);
 		}
 
 		return httpService;

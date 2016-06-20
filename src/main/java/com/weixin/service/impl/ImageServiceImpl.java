@@ -13,7 +13,7 @@ import com.weixin.entity.mongo.Image;
 import com.weixin.repository.mongo.ImageRepository;
 import com.weixin.service.iface.FileService;
 import com.weixin.service.iface.IImageService;
-import com.weixin.vo.ArticleVo;
+import com.weixin.vo.WxArticleVo;
 import com.weixin.vo.PaginationVo;
 
 /**
@@ -46,7 +46,7 @@ public class ImageServiceImpl implements IImageService {
     	query.skip((page-1)*size);
 		query.limit(size);
     	List<Image> list = mongoTemplate.find(query, Image.class);
-        List<ArticleVo> articleVoList = new ArrayList<ArticleVo>();
+        List<WxArticleVo> articleVoList = new ArrayList<WxArticleVo>();
 /*        for(Image image : list){
         	ArticleVo articleVo = new ArticleVo(article.getArticleId(), article.getTitle(), article.getSummary(),article.getContent(), article.getDate());
         	articleVoList.add(articleVo);

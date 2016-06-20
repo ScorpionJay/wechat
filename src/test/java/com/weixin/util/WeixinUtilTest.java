@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.weixin.app.Application;
 import com.weixin.service.iface.WxService;
-import com.weixin.vo.ArticleVo;
+import com.weixin.vo.WxArticleVo;
 import com.weixin.vo.NewsVo;
 import com.weixin.vo.WechatVo;
 
@@ -129,10 +129,10 @@ public class WeixinUtilTest {
 		
 		NewsVo newsVo = new NewsVo();
 		
-		ArticleVo articleVo = new ArticleVo("test", "X-fJF8E32mDZQnq6XgyDBdTSYbO_sGK_u6QPYGqZpJk", "jay", "简介", 1, "这是测试内容", "http://scorpionjay.github.io/");
+		WxArticleVo WxArticleVo = new WxArticleVo("test", "X-fJF8E32mDZQnq6XgyDBdTSYbO_sGK_u6QPYGqZpJk", "jay", "简介", 1, "这是测试内容", "http://scorpionjay.github.io/");
 		
-		List<ArticleVo> list = new ArrayList<>();
-		list.add(articleVo);
+		List<WxArticleVo> list = new ArrayList<>();
+		list.add(WxArticleVo);
 		
 		newsVo.setArticles(list);
 		

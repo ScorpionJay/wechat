@@ -10,13 +10,13 @@ import java.util.List;
 public class NewsVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private List<ArticleVo> articles;
+	private List<WxArticleVo> articles;
 
-	public List<ArticleVo> getArticles() {
+	public List<WxArticleVo> getArticles() {
 		return articles;
 	}
 
-	public void setArticles(List<ArticleVo> articles) {
+	public void setArticles(List<WxArticleVo> articles) {
 		this.articles = articles;
 	}
 

@@ -1,12 +1,12 @@
 define(['angular','route','home/homeController'
 	,'accout/accoutController'
-	,'login/controller','common/service'],function(){
+	,'login/controller','common/service','article/controller','article/directive'],function(){
 
 	console.log('app');
 
 	var app = angular.module('app',['ngRoute',
 		'homeModule',
-		'accoutModule','loginModule','serviceModule']);
+		'accoutModule','loginModule','serviceModule','ArticleCtrl','articleDirectiveModule']);
 
 	app.config(function($routeProvider, $locationProvider){
 
@@ -23,6 +23,22 @@ define(['angular','route','home/homeController'
 				templateUrl:'app/js/login/index.html',
 				controller:'loginCtr'
 			})
+			.when("/article",{
+									templateUrl : "app/js/article/article.html",
+									controller : 'articleCtrl',
+									reloadOnSearch : false
+								 }
+				).when("/articleDetail/:id",{
+									templateUrl : "app/js/article/articleDetail.html",
+									controller : 'articleDetailCtrl',
+									reloadOnSearch : false
+								 }
+				).when("/newArticle",{
+									templateUrl : "app/js/article/newArticle.html",
+									controller : 'newArticleCtrl',
+									reloadOnSearch : false
+								 }
+				)
 			.otherwise('/home');
 
         $locationProvider.html5Mode({

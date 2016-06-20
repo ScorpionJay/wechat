@@ -12,6 +12,8 @@ requirejs.config({
         ,route:'lib/angular-route/angular-route'
         ,bootstrap:'lib/bootstrap/js/bootstrap'
         ,util:'common/util'
+        ,'ckeditor':'lib/ckeditor/ckeditor'
+        ,"angular-bootstrap":'lib/ui-bootstrap-0.13.1-SNAPSHOT',
     },
 
     shim:{
@@ -24,6 +26,9 @@ requirejs.config({
         angular: {
             exports: 'angular'
         },
+        "angular-bootstrap":{
+      		deps:['angular']  		
+  		},
         util: {
             exports: 'util'
         },
