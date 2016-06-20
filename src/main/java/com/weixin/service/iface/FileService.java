@@ -5,7 +5,7 @@ package com.weixin.service.iface;
  * @author 		Jay
  * @time		2015年6月3日
  */
-public interface IFileService {
+public interface FileService {
 	
 	String save(byte[] content, String filename);
 	

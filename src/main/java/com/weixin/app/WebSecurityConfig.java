@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		// 允许所有用户访问"/" 和 "/greet"
-		http.authorizeRequests().antMatchers("/", "/hello", "/login.html", "/wx/**").permitAll()
+		http.authorizeRequests().antMatchers("/", "/hello", "/login.html", "/wx/**","/api/file/**").permitAll()
 
 				// 其他访问均系要验证权限
 				.anyRequest().authenticated();

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
-import com.weixin.service.iface.IFileService;
+import com.weixin.service.iface.FileService;
 
 /**
  * file service implement
@@ -21,7 +21,7 @@ import com.weixin.service.iface.IFileService;
  * @time 2015年6月3日
  */
 @Service
-public class FileServiceImpl implements IFileService {
+public class FileServiceImpl implements FileService {
 
 	@Autowired
 	GridFsOperations operations;

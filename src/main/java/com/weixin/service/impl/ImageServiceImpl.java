@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.weixin.entity.mongo.Image;
 import com.weixin.repository.mongo.ImageRepository;
-import com.weixin.service.iface.IFileService;
+import com.weixin.service.iface.FileService;
 import com.weixin.service.iface.IImageService;
 import com.weixin.vo.ArticleVo;
 import com.weixin.vo.PaginationVo;
@@ -28,7 +28,7 @@ public class ImageServiceImpl implements IImageService {
 	ImageRepository imageRepository;
 	
 	@Autowired
-	IFileService fileService;
+	FileService fileService;
 	
     
     @Autowired
