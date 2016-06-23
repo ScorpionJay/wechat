@@ -162,4 +162,10 @@ public class WeixinUtilTest {
 	}
 	
 	
+	@Test
+	public void testMessagePreview() {
+		WechatVo vo = wxService.findByTitle("jay's test account");
+		weixinUtil.messagePreview(vo.getToken(),"test openId");
+		
+	}
 }

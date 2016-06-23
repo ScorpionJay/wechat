@@ -58,6 +58,8 @@ public class WeixinUtil {
 
 	private static final String GET_MEDIA_URL = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=ACCESS_TOKEN&media_id=MEDIA_ID";
 	
+	private static final String MESSAGE_PREVIEW_URL = "https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=ACCESS_TOKEN";
+	
 	/**
 	 * 添加永久素材
 	 */
@@ -462,6 +464,38 @@ public class WeixinUtil {
 		
 		
 	}
+	
+	
+	/**
+	 * 预览
+	 * user not agree mass-send protocol   没有权限
+	 * @param token
+	 */
+	public String messagePreview(String token,String touser){
+		String url = MESSAGE_PREVIEW_URL.replace("ACCESS_TOKEN", token);
+		Map<String, Object> param = new HashMap<>();
+		
+		Map<String, Object> mpnews = new HashMap<>();
+		mpnews.put("media_id", "X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"); //test
+		param.put("mpnews", mpnews);
+		param.put("msgtype", "mpnews");
+		param.put("touser", touser);
+		
+		
+		String result = restTemplate.postForObject(url, param, String.class);
+
+		log.info(result.toString());
+		return result;
+//		{"media_id":"X-fJF8E32mDZQnq6XgyDBaBEx3KMckF_oePNQfBjt4I"}
+		
+		/**
+		 * {"voice_count":0,"video_count":0,"image_count":2,"news_count":1}
+		 */
+		// 这里的media_id 保存到本地数据库
+		
+		
+	}
+	
 	
 	/**
 	 * Upload image 

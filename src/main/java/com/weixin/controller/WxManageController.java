@@ -127,5 +127,12 @@ public class WxManageController {
 		
 	}
 	
+	@RequestMapping(value = "message/preview")
+	@ResponseBody
+	public String messagePreview(String touser) {
+		return weixinUtil.messagePreview(TokenThread.accessToken.getAccessToken(), touser);
+		
+	}
+	
 	
 }
